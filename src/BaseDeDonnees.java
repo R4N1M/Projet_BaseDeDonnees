@@ -95,7 +95,7 @@ public class BaseDeDonnees {
         liste_op.add(op);
 
       }
-      Transaction t = new Transaction(/*date d'arrivé selon la loi de poisson*/, /*date d'echance*/, liste_op);
+      //Transaction t = new Transaction(/*date d'arrivé selon la loi de poisson*/, /*date d'echance*/, liste_op);
 
   }
   public static void main(String[] args) {
