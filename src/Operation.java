@@ -13,6 +13,13 @@ public class Operation {
     en_execution = false;
   }
 
+  public boolean estReel() {
+    return est_reel;
+  }
+  public boolean doitLire() {
+    return doit_lire;
+  }
+
   public boolean avancerTemps(int tempsSimulation) {
     if (!en_execution) {
 
@@ -58,7 +65,7 @@ public class Operation {
     }
   }
 
-  //TODO: fonciton qui annule une opération
+  //TODO: fonction qui annule une opération
   public void annuler(){
 
   }

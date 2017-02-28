@@ -1,6 +1,8 @@
 import java.util.*;
+import java.util.ArrayList;
 
 public class BaseDeDonnees {
+
   private DonneeTempsReel[] donneesTempsReel;
   private DonneeClassique[] donneesClassique;
   private ArrayList<Transaction> transactions;
@@ -10,7 +12,7 @@ public class BaseDeDonnees {
   private int tempsLectureReel;
   private int tempsEcritureReel;
 
-	public BaseDeDonnees(int nbr_dtr, int min_v, int max_v, int nbr_dc, int min_nbr_op, int max_nbr_op, int duree_s, int lp, int tlc, int tec, int tlr, int ter) {
+	public BaseDeDonnees(int nbr_dtr, int min_v, int max_v, int nbr_dc, int min_nbr_op, int max_nbr_op, int duree_s, int lp, int tlc, int tec, int tlr, int ter, double tauxAleatoire) {
     tempsLectureClassique = tlc;
     tempsEcritureClassique = tec;
     tempsLectureReel = tlr;
@@ -19,7 +21,7 @@ public class BaseDeDonnees {
     generate_tempsreel(nbr_dtr, min_v, max_v);
     generate_tempsclassique(nbr_dc);
     generate_transactions_miseajour();
-    generate_transactions_utilisateur(min_nbr_op, max_nbr_op, duree_s, lp);
+    generate_transactions_utilisateur(min_nbr_op, max_nbr_op, duree_s, lp, tauxAleatoire);
 	}
 
   private void generate_tempsreel(int nbr, int min, int max){
@@ -45,13 +47,18 @@ public class BaseDeDonnees {
     }
   }
 
-  private void generate_transactions_utilisateur(int min, int max, int duree, int lambda){
-    // Création d'une transaction
+  private void generate_transactions_utilisateur(int min, int max, int duree, int lambda, double tauxAleatoire){
+    Random rnd = new Random();
+    Poisson poisson = new Poisson(lambda, duree);
+    ArrayList<Integer> evenement = poisson.generate();
+
+    for (Integer i : evenement) {
+      // Création d'une transaction
       // Calcul du nombre d'opération
-      Random rnd = new Random();
       int nombre_op = min + rnd.nextInt(max - min);
       // Création de la liste d'opération
       ArrayList<Operation> liste_op = new ArrayList<Operation>();
+      // Création des opérations
       for (int n = 0; n < nombre_op; n++) {
         // la donnée sera t'elle une donnée en temps réel ou classique?
         boolean surReel = Math.random() < 0.5;
@@ -95,9 +102,36 @@ public class BaseDeDonnees {
         liste_op.add(op);
 
       }
-      //Transaction t = new Transaction(/*date d'arrivé selon la loi de poisson*/, /*date d'echance*/, liste_op);
+      int dureeMinimal = 0;
+      for (Operation op : liste_op) {
+        dureeMinimal += getTempsOperation(op);
+      }
+      int echeance =  i + (int) ( tauxAleatoire*rnd.nextDouble() * dureeMinimal);
+      Transaction t = new Transaction(i, echeance, liste_op);
+      // si l'échéance ne dépasse pas la date de fin de la simulation :
+      if (echeance <= duree) {
+        transactions.add(t);
+      }
+    }
 
   }
+
+  private int getTempsOperation(Operation o) {
+    if(o.estReel()) {
+      if (o.doitLire()) {
+        return tempsLectureReel;
+      } else {
+        return tempsEcritureReel;
+      }
+    } else {
+      if (o.doitLire()) {
+        return tempsLectureClassique;
+      } else {
+        return tempsEcritureClassique;
+      }
+    }
+  }
+
   public static void main(String[] args) {
 
     // TODO: Interface graphique + Formulaire
@@ -114,5 +148,8 @@ public class BaseDeDonnees {
     int nombre_donnee_classique = 10;
     int min_validite = 10;
     int max_validite = 20;
+
+    // définit la borne max pour la valeur aléatoire
+    double tauxAleatoire = 2.0;
   }
 }
