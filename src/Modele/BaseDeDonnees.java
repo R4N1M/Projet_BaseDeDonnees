@@ -117,7 +117,7 @@ public class BaseDeDonnees {
             duree_op = tempsEcritureClassique;
           }
         }
-        Operation op = new Operation(donnee, true, false, duree_op);
+        Operation op = new Operation(donnee, false, lecture, duree_op);
         liste_op.add(op);
 
       }
@@ -154,7 +154,7 @@ public class BaseDeDonnees {
         boolean[] resu = transaction.avancerTemps(tempsActuel);
         // si la transaction est terminé
         if(resu[0]) {
-          // TODO : retiré la transaction de la liste
+          //Retiré la transaction de la liste
           Transaction t = transactions.remove(0);
           // si la transaction c'est terminé avec succés
           if(resu[1]){
@@ -179,7 +179,7 @@ public class BaseDeDonnees {
         }
       }
     }
-    
+
     tempsActuel++;
   }
 
