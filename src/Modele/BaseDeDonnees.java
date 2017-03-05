@@ -39,6 +39,10 @@ public class BaseDeDonnees {
     echec = 0;
 	}
 
+  public ArrayList<Transaction> getTransactions() {
+    return transactions;
+  }
+
   private void generate_tempsreel(int nbr, int min, int max){
     donneesTempsReel = new DonneeTempsReel[nbr];
     for(int i=0; i<nbr; i++){
