@@ -178,13 +178,9 @@ public class BaseDeDonnees {
           }
         }
       }
-      else {
-        tempsActuel++;
-      }
     }
-    else {
-      tempsActuel++;
-    }
+    
+    tempsActuel++;
   }
 
   private int getTempsOperation(Operation o) {
