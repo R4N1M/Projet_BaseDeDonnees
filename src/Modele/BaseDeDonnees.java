@@ -136,7 +136,6 @@ public class BaseDeDonnees {
   }
 
   public void trie() {
-    // FIXME : peut être que le tri est à l'envers
     // Trier les transactions dans leur ordre d'arrivé
     transactions.sort( (Transaction t1, Transaction t2) -> {
       return t1.getArrivee() - t2.getArrivee();
@@ -149,7 +148,7 @@ public class BaseDeDonnees {
       transaction = transactions.get(0);
     }
     if (transaction != null) {
-      if (transaction.getArrivee() >= tempsActuel) {
+      if (transaction.getArrivee() <= tempsActuel) {
         // Détecter si l'opération est fini et si la transaction était une transaction de mise à jour
         boolean[] resu = transaction.avancerTemps(tempsActuel);
         // si la transaction est terminé
