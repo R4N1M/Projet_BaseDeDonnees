@@ -117,7 +117,7 @@ public class BaseDeDonnees {
             duree_op = tempsEcritureClassique;
           }
         }
-        Operation op = new Operation(donnee, false, lecture, duree_op);
+        Operation op = new Operation(donnee, surReel, lecture, duree_op);
         liste_op.add(op);
 
       }
