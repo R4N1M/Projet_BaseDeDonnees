@@ -112,7 +112,7 @@ public class FormPanel extends JPanel implements ActionListener{
 		simulationTimeField = new JSpinner(new SpinnerNumberModel(0,0,10000,1));
 		
 		lambdaLabel = new JLabel("Lambda de la loi de poisson :");
-		lambdaField = new JSpinner(new SpinnerNumberModel(0,0,10000,1));
+		lambdaField = new JSpinner(new SpinnerNumberModel(0,0,10000,0.05));
 		
 		cancel = new JButton("Effacer");
 		cancel.addActionListener(this);
@@ -160,7 +160,7 @@ public class FormPanel extends JPanel implements ActionListener{
 						
 			c.createDataBase(	(int)realDataNumberField.getValue(), (int)startIntervalValidityField.getValue(), (int)endIntervalValidityField.getValue(), 
 								(int)classicDataNumberField.getValue(), (int)startIntervalNbOpField.getValue(), (int)endIntervalNbOpField.getValue(), 
-								(int)simulationTimeField.getValue(), (int)lambdaField.getValue(), (int)classicDataReadTimeField.getValue(), 
+								(int)simulationTimeField.getValue(), (double)lambdaField.getValue(), (int)classicDataReadTimeField.getValue(), 
 								(int)classicDataWriteTimeField.getValue(), (int)realDataReadTimeField.getValue(), 3);
 			
 		} else if (e.getSource() == cancel){
