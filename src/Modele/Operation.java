@@ -65,15 +65,9 @@ public class Operation {
       }else{
         DonneeTempsReel d = (DonneeTempsReel) donnee ;
         d.mettre_a_jour(date);
-        // TODO: généré une nouvelle transaction de mise à jour
       }
     }
     // avancer le temps
     date++;
-  }
-
-  //TODO: fonction qui annule une opération
-  public void annuler(){
-
   }
 }

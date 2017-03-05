@@ -47,7 +47,6 @@ public class Transaction{
       }
     }
     else {
-      annulerTout();
       termine = true;
     }
 
@@ -57,10 +56,5 @@ public class Transaction{
     tab[2] = deMisAJour;
 
     return tab;
-  }
-
-  //TODO: fonction qui annule une transaction et ses opérations filles.
-  public void annulerTout(){
-
   }
 }
