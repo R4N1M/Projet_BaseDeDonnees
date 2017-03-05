@@ -2,7 +2,6 @@ package Vue;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -42,12 +41,20 @@ public class TransactionFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.avancer();
-				
+				maj();
 			}
 		});
+		time = new JLabel(c.getCurrentTime()+"");
+		
+		footer.add(time);
+		footer.add(next);
+		
 		title = new JLabel("Liste des transactions");
 		content = new JLabel("");
-		time = new JLabel(c.getCurrentTime()+"");
+		
+		this.add(title, BorderLayout.NORTH);
+		this.add(content, BorderLayout.CENTER);
+		this.add(footer, BorderLayout.SOUTH);
 		
 		maj();
 		
@@ -56,9 +63,14 @@ public class TransactionFrame extends JFrame {
 	
 	public void maj(){
 		
-		ArrayList<String> transactions = c.getTransaction();
+		ArrayList<String> transactions = c.getTransactions();
+		String str = "<html>";
 		for (String s : transactions){
 			System.out.println(s);
+			str += s + "<br>";
 		}
+		str += "</html>";
+		content.setText(str);
+		time.setText(c.getCurrentTime()+"");
 	}
 }

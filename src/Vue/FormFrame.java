@@ -45,9 +45,7 @@ public class FormFrame extends JFrame {
 		this.updateForm = new FormPanel(c);
 				
 		this.add(updateForm);
-		
-		
-		
+				
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.pack();
 		this.setVisible(true);

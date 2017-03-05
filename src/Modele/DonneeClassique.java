@@ -1,7 +1,8 @@
 package Modele;
 public class DonneeClassique{
 
-  private static int next_id = 0 ;
+
+private static int next_id = 0 ;
 
   protected int id ;
   protected int valeur ;
@@ -59,6 +60,11 @@ public class DonneeClassique{
   public void removeLecteur() {
     nombre_lecteur--;
   }
-
+  
+  @Override
+	public String toString() {
+		return "DonneeClassique [id=" + id + ", valeur=" + valeur + ", est_verrouille=" + est_verrouille
+				+ ", nombre_lecteur=" + nombre_lecteur + "]";
+	}
 
 }

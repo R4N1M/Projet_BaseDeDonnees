@@ -46,9 +46,11 @@ public class Controller {
 	
 	public void avancer(){
 		bdd.avancerTemps();
+		System.out.println(bdd.getTempsActuel());
 	}
 	
 	public int getCurrentTime(){
+		System.out.println(bdd.getReussi() + " " + bdd.getEchec());
 		return bdd.getTempsActuel();
 	}
 	
@@ -56,11 +58,10 @@ public class Controller {
 		tFrame = new TransactionFrame(this);
 	}
 	
-	public ArrayList<String> getTransaction(){
+	public ArrayList<String> getTransactions(){
 		ArrayList<String> trs = new ArrayList<String>();
 		
 		for (Transaction t : bdd.getTransactions()){
-			System.out.println("Yahahahhahah");
 			trs.add(t.toString());
 		}
 		
