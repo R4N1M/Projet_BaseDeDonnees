@@ -67,8 +67,6 @@ public class Operation {
         d.mettre_a_jour(date);
       }
     }
-    // avancer le temps
-    date++;
   }
 
 @Override
@@ -76,6 +74,6 @@ public String toString() {
 	return "Operation [donnee=" + donnee + ", est_reel=" + est_reel + ", doit_lire=" + doit_lire + ", temps_restant="
 			+ temps_restant + ", en_execution=" + en_execution + "]";
 }
-  
-  
+
+
 }
