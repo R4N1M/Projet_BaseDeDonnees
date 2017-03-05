@@ -12,6 +12,8 @@ public class BaseDeDonnees {
   private int tempsLectureReel;
   private int tempsEcritureReel;
 
+  private int tempsActuel;
+
 	public BaseDeDonnees(int nbr_dtr, int min_v, int max_v, int nbr_dc, int min_nbr_op, int max_nbr_op, int duree_s, int lp, int tlc, int tec, int tlr, int ter, double tauxAleatoire) {
     tempsLectureClassique = tlc;
     tempsEcritureClassique = tec;
@@ -22,6 +24,14 @@ public class BaseDeDonnees {
     generate_tempsclassique(nbr_dc);
     generate_transactions_miseajour();
     generate_transactions_utilisateur(min_nbr_op, max_nbr_op, duree_s, lp, tauxAleatoire);
+
+    // FIXME : peut être que le tri est à l'envers
+    // Trier les transactions dans leur ordre d'arrivé
+    transactions.sort( (Transaction t1, Transaction t2) -> {
+      return t1.getArrivee() - t2.getArrivee();
+    });
+
+    tempsActuel = 0;
 	}
 
   private void generate_tempsreel(int nbr, int min, int max){
@@ -114,6 +124,24 @@ public class BaseDeDonnees {
       }
     }
 
+  }
+
+  public void avancerTemps() {
+    Transaction transaction = null;
+    if (transactions.size() != 0) {
+      transaction = transactions.get(0);
+    }
+    if (transaction != null) {
+      if (transaction.getArrivee() >= tempsActuel) {
+        transaction.avancerTemps(tempsActuel);
+      }
+      else {
+        tempsActuel++;
+      }
+    }
+    else {
+      tempsActuel++;
+    }
   }
 
   private int getTempsOperation(Operation o) {

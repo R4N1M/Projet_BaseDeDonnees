@@ -13,12 +13,20 @@ public class Transaction{
     operationCourante = 0;
   }
 
+  public int getArrivee() {
+    return temps_arrivee;
+  }
+
+  public int getEcheance() {
+    return temps_echeance;
+  }
+
   public void avancerTemps(int tempsSimulation) {
     if (tempsSimulation < temps_echeance) {
       if ( operations.get(operationCourante).avancerTemps(tempsSimulation) ) {
         operationCourante++;
         // TODO: SI la transaction est finie ALORS supprimer la transaction de la liste des transaction
-        // TODO: SI c'est une transaction de mise à jour, en redeclarer une autre 
+        // TODO: SI c'est une transaction de mise à jour, en redeclarer une autre
       }
     }
     else {

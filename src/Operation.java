@@ -63,6 +63,8 @@ public class Operation {
         // TODO: généré une nouvelle transaction de mise à jour
       }
     }
+    // avancer le temps
+    date++;
   }
 
   //TODO: fonction qui annule une opération
