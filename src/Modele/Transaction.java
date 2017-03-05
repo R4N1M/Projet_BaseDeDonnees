@@ -60,7 +60,7 @@ public class Transaction{
 
 	@Override
 	public String toString() {
-		return "Transaction [temps_arrivee=" + temps_arrivee + ", temps_echeance=" + temps_echeance + ", operationCourante" + operations.get(operationCourante) + "]";
+		return "Transaction [temps_arrivee=" + temps_arrivee + ", temps_echeance=" + temps_echeance + ", opérations réstantes " + operations.size() + "]";
 	}
 
   

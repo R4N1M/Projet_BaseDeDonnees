@@ -1,7 +1,7 @@
 package Vue;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,6 +23,8 @@ public class TransactionFrame extends JFrame {
 	private JPanel footer;
 	private JButton next;
 	private JLabel time;
+	private JLabel reussi;
+	private JLabel echec;
 	
 	private Controller c;
 	
@@ -34,7 +36,7 @@ public class TransactionFrame extends JFrame {
 		this.setLayout(new BorderLayout());
 		
 		footer = new JPanel();
-		footer.setLayout(new FlowLayout());
+		footer.setLayout(new GridLayout(2,2));
 		
 		next = new JButton("Avancer d'un temps");
 		next.addActionListener(new ActionListener() {
@@ -46,7 +48,11 @@ public class TransactionFrame extends JFrame {
 			}
 		});
 		time = new JLabel(c.getCurrentTime()+"");
+		reussi = new JLabel("<html><center><p style='color:green'>Transactions reussies : "+c.getSucces()+"</p><c/enter></html>");
+		echec = new JLabel("<html><center><p style='color:red'>Transactions echouées : "+c.getEchec()+"</p></center></html>");
 		
+		footer.add(reussi);
+		footer.add(echec);
 		footer.add(time);
 		footer.add(next);
 		
@@ -68,17 +74,17 @@ public class TransactionFrame extends JFrame {
 		String str = "";
 		if(transactions.size() == 0){
 			next.setEnabled(false);
-			str = "<html><p style='color:green'>Transactions reussies : "+c.getSucces()+"</p>";
-			str += "<p style='color:red'>Transactions echouées : "+c.getEchec()+"</p>";
+			str = "Simulation terminée";
 		} else {
 			str = "<html>";
 			for (String s : transactions){
-				System.out.println(s);
 				str += s + "<br>";
 			}
 			str += "</html>";
 		}
-		time.setText(c.getCurrentTime()+"");
+		time.setText("<html><center><p> Temps : "+c.getCurrentTime()+"</p></center></html>");
+		reussi.setText("<html><center><p style='color:green'>Transactions reussies : "+c.getSucces()+"</p></center></html>");
+		echec.setText("<html><center><p style='color:red'>Transactions echouées : "+c.getEchec()+"</p></center></html>");
 		
 		content.setText(str);
 	}

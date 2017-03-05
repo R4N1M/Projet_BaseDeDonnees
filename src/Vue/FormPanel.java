@@ -155,18 +155,14 @@ public class FormPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource() == submit){
-			
-			System.out.println("START !!!!!!");
-						
+									
 			c.createDataBase(	(int)realDataNumberField.getValue(), (int)startIntervalValidityField.getValue(), (int)endIntervalValidityField.getValue(), 
 								(int)classicDataNumberField.getValue(), (int)startIntervalNbOpField.getValue(), (int)endIntervalNbOpField.getValue(), 
 								(int)simulationTimeField.getValue(), (double)lambdaField.getValue(), (int)classicDataReadTimeField.getValue(), 
 								(int)classicDataWriteTimeField.getValue(), (int)realDataReadTimeField.getValue(), 3);
 			
 		} else if (e.getSource() == cancel){
-			
-			System.out.println("CANCEL !!!!!");
-				
+							
 			for ( Component c : pd.getComponents()){
 				((JSpinner)c).setValue(0);
 			}
