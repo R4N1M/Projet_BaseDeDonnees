@@ -150,12 +150,12 @@ public class BaseDeDonnees {
     }
     if (transaction != null) {
       if (transaction.getArrivee() >= tempsActuel) {
-        // TODO détecter si l'opération est fini et si la transaction était une transaction de mise à jour
+        // Détecter si l'opération est fini et si la transaction était une transaction de mise à jour
         boolean[] resu = transaction.avancerTemps(tempsActuel);
         // si la transaction est terminé
         if(resu[0]) {
           // TODO : retiré la transaction de la liste
-
+          Transaction t = transactions.remove(0);
           // si la transaction c'est terminé avec succés
           if(resu[1]){
             reussi++;
@@ -166,8 +166,12 @@ public class BaseDeDonnees {
 
           // si la transaction était de mis a jour
           if (resu[2]){
-            // TODO: créer une nouvelle transaction de mis a jour et l'ajouter
-
+            // FIXME: créer une nouvelle transaction de mis a jour et l'ajouter
+            DonneeTempsReel d = (DonneeTempsReel) t.getOperations().get(0).getDonnee();
+            Operation op = new Operation(d, true, false, d.getValidite()*2/3);
+            ArrayList<Operation> liste_op = new ArrayList<Operation>();
+            liste_op.add(op);
+            Transaction t2 = new Transaction(tempsActuel + d.getValidite()*2/3, tempsActuel + d.getValidite(), liste_op);
             trie();
           }
         }

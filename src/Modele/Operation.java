@@ -14,6 +14,10 @@ public class Operation {
     en_execution = false;
   }
 
+  public DonneeClassique getDonnee() {
+    return donnee;
+  }
+
   public boolean estReel() {
     return est_reel;
   }
