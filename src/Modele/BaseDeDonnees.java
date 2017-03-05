@@ -167,7 +167,9 @@ public class BaseDeDonnees {
           // si la transaction était de mis a jour
           if (resu[2]){
             // FIXME: créer une nouvelle transaction de mis a jour et l'ajouter
-            DonneeTempsReel d = (DonneeTempsReel) t.getOperations().get(0).getDonnee();
+
+            int id = t.getOperations().get(0).getDonnee().getId();
+            DonneeTempsReel d = donneesTempsReel[id];
             Operation op = new Operation(d, true, false, d.getValidite()*2/3);
             ArrayList<Operation> liste_op = new ArrayList<Operation>();
             liste_op.add(op);

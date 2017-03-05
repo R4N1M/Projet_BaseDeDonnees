@@ -27,6 +27,10 @@ public class DonneeClassique{
     return est_verrouille;
   }
 
+  public int getId() {
+    return id;
+  }
+
   /*Fonction qui verrouille la donnée
     renvoie true si elle ne l'est pas deja
     sinon false */
