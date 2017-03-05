@@ -63,7 +63,11 @@ public class FormPanel extends JPanel implements ActionListener{
 	private JButton cancel;
 	private JButton submit;
 	
-	public FormPanel() {
+	private Component newFrame;
+	
+	public FormPanel(Component newFrame) {
+		
+		this.newFrame = newFrame;
 		
 		this.setLayout(new BorderLayout());
 		
@@ -157,7 +161,9 @@ public class FormPanel extends JPanel implements ActionListener{
 			}
 		
 			System.out.println(ints);
-						
+			
+			newFrame = new TransactionFrame();
+			
 		} else if (e.getSource() == cancel){
 			
 			System.out.println("CANCEL !!!!!");
