@@ -18,6 +18,10 @@ public class Transaction{
     return temps_arrivee;
   }
 
+  public ArrayList<Operation> getOperations() {
+    return operations;
+  }
+
   public int getEcheance() {
     return temps_echeance;
   }
@@ -27,10 +31,10 @@ public class Transaction{
     boolean deMisAJour = false;
     boolean success = false;
 
-    // TODO: Detecter si la c'est une transaction de mise à jour
-    /*if ("de mise a jour") {
+    // Detecter si la c'est une transaction de mise à jour
+    if (operations.get(0).estReel() && !operations.get(0).doitLire() ) {
       deMisAJour = true;
-    }*/
+    }
 
     if (tempsSimulation < temps_echeance) {
       if ( operations.get(operationCourante).avancerTemps(tempsSimulation) ) {
@@ -43,7 +47,7 @@ public class Transaction{
       }
     }
     else {
-      annulerTout();
+      termine = true;
     }
 
     boolean[] tab = new boolean[3];
@@ -52,11 +56,6 @@ public class Transaction{
     tab[2] = deMisAJour;
 
     return tab;
-  }
-
-  //TODO: fonction qui annule une transaction et ses opérations filles.
-  public void annulerTout(){
-
   }
 
 	@Override
