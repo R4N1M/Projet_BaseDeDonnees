@@ -93,13 +93,13 @@ public class FormPanel extends JPanel implements ActionListener{
 		
 
 		endIntervalValidityLabel = new JLabel("Fin de l'interval pour la durée de validité :");
-		endIntervalValidityField = new JSpinner(new SpinnerNumberModel(0,0,10000,1));
+		endIntervalValidityField = new JSpinner(new SpinnerNumberModel(1,0,10000,1));
 		
 		startIntervalNbOpLabel = new JLabel("Début de l'interval pour le nombre d'opération :");
 		startIntervalNbOpField = new JSpinner(new SpinnerNumberModel(0,0,10000,1));
 		
 		endIntervalNbOpLabel = new JLabel("Fin de l'interval pour le nombre d'opération :");
-		endIntervalNbOpField = new JSpinner(new SpinnerNumberModel(0,0,10000,1));
+		endIntervalNbOpField = new JSpinner(new SpinnerNumberModel(1,0,10000,1));
 		
 		realDataReadTimeLabel = new JLabel("Durée d'une opération de lecture sur une données temps réel :");
 		realDataReadTimeField = new JSpinner(new SpinnerNumberModel(0,0,10000,1));
@@ -114,7 +114,7 @@ public class FormPanel extends JPanel implements ActionListener{
 		simulationTimeField = new JSpinner(new SpinnerNumberModel(0,0,10000,1));
 		
 		lambdaLabel = new JLabel("Lambda de la loi de poisson :");
-		lambdaField = new JSpinner(new SpinnerNumberModel(0,0,10000,0.01));
+		lambdaField = new JSpinner(new SpinnerNumberModel(0,0,10000,1));
 		
 		cancel = new JButton("Effacer");
 		cancel.addActionListener(this);
@@ -159,19 +159,13 @@ public class FormPanel extends JPanel implements ActionListener{
 		if (e.getSource() == submit){
 			
 			System.out.println("START !!!!!!");
-			
-			/*ArrayList<Integer> ints = new ArrayList<Integer>();
-			for ( Component c : pd.getComponents()){
-				ints.add((int)((JSpinner)c).getValue());
-			}
-			System.out.println(ints);*/
-			
+						
 			c.createDataBase(	(int)realDataNumberField.getValue(), (int)startIntervalValidityField.getValue(), (int)endIntervalValidityField.getValue(), 
 								(int)classicDataNumberField.getValue(), (int)startIntervalNbOpField.getValue(), (int)endIntervalNbOpField.getValue(), 
 								(int)simulationTimeField.getValue(), (int)lambdaField.getValue(), (int)classicDataReadTimeField.getValue(), 
 								(int)classicDataWriteTimeField.getValue(), (int)realDataReadTimeField.getValue(), 3);
 			
-			newFrame = new TransactionFrame();
+			newFrame = new TransactionFrame(c);
 			
 		} else if (e.getSource() == cancel){
 			

@@ -34,7 +34,9 @@ public class FormFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				transFrame = new TransactionFrame();	
+				if(c.getBdd() != null){
+					transFrame = new TransactionFrame(c);
+				}
 			}
 		});
 		this.menu.add(menuItem);
