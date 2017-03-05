@@ -1,3 +1,4 @@
+package Modele;
 public class Operation {
   private DonneeClassique donnee;
   private boolean est_reel;
