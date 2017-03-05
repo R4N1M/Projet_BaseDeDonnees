@@ -58,4 +58,12 @@ public class Transaction{
   public void annulerTout(){
 
   }
+
+	@Override
+	public String toString() {
+		return "Transaction [temps_arrivee=" + temps_arrivee + ", temps_echeance=" + temps_echeance + ", operations="
+				+ operations + "]";
+	}
+
+  
 }

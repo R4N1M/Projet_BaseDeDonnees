@@ -66,13 +66,11 @@ public class FormPanel extends JPanel implements ActionListener{
 	private JButton cancel;
 	private JButton submit;
 	
-	private Component newFrame;
 	private Controller c;
 	
-	public FormPanel(Component newFrame, Controller c) {
+	public FormPanel(Controller c) {
 		
 		this.c = c;
-		this.newFrame = newFrame;
 		
 		this.setLayout(new BorderLayout());
 		
@@ -164,8 +162,6 @@ public class FormPanel extends JPanel implements ActionListener{
 								(int)classicDataNumberField.getValue(), (int)startIntervalNbOpField.getValue(), (int)endIntervalNbOpField.getValue(), 
 								(int)simulationTimeField.getValue(), (int)lambdaField.getValue(), (int)classicDataReadTimeField.getValue(), 
 								(int)classicDataWriteTimeField.getValue(), (int)realDataReadTimeField.getValue(), 3);
-			
-			newFrame = new TransactionFrame(c);
 			
 		} else if (e.getSource() == cancel){
 			

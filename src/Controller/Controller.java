@@ -1,11 +1,17 @@
 package Controller;
 
 import Vue.FormFrame;
+import Vue.TransactionFrame;
+
+import java.util.ArrayList;
+
 import Modele.BaseDeDonnees;
+import Modele.Transaction;
 
 public class Controller {
 
 	private FormFrame principalFrame;
+	private TransactionFrame tFrame;
 	private BaseDeDonnees bdd;
 	
 	private final double TAUX_ALEA = 20.0;
@@ -35,6 +41,30 @@ public class Controller {
 								int ter
 								){
 		bdd = new BaseDeDonnees(nbr_dtr, min_v, max_v, nbr_dc, min_nbr_op, max_nbr_op, duree_s, lp, tlc, tec, tlr, ter, TAUX_ALEA);
+		afficherListeTransaction();
+	}
+	
+	public void avancer(){
+		bdd.avancerTemps();
+	}
+	
+	public int getCurrentTime(){
+		return bdd.getTempsActuel();
+	}
+	
+	public void afficherListeTransaction(){
+		tFrame = new TransactionFrame(this);
+	}
+	
+	public ArrayList<String> getTransaction(){
+		ArrayList<String> trs = new ArrayList<String>();
+		
+		for (Transaction t : bdd.getTransactions()){
+			System.out.println("Yahahahhahah");
+			trs.add(t.toString());
+		}
+		
+		return trs;
 	}
 	
 	public static void main(String[] args){

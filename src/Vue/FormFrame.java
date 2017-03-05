@@ -18,7 +18,6 @@ public class FormFrame extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem menuItem;
-	private TransactionFrame transFrame;
 	private Controller c;
 	
 	public FormFrame(Controller c){
@@ -35,7 +34,7 @@ public class FormFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(c.getBdd() != null){
-					transFrame = new TransactionFrame(c);
+					c.afficherListeTransaction();
 				}
 			}
 		});
@@ -43,7 +42,7 @@ public class FormFrame extends JFrame {
 		this.menuBar.add(menu);
 		this.setJMenuBar(menuBar);
 		
-		this.updateForm = new FormPanel(transFrame, c);
+		this.updateForm = new FormPanel(c);
 				
 		this.add(updateForm);
 		

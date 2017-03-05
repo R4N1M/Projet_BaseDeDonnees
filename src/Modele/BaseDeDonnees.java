@@ -229,4 +229,12 @@ public class BaseDeDonnees {
     // définit la borne max pour la valeur aléatoire
     double tauxAleatoire = 2.0;
   }
+
+public int getTempsActuel() {
+	return tempsActuel;
+}
+
+public void setTempsActuel(int tempsActuel) {
+	this.tempsActuel = tempsActuel;
+}
 }

@@ -72,4 +72,12 @@ public class Operation {
   public void annuler(){
 
   }
+
+@Override
+public String toString() {
+	return "Operation [donnee=" + donnee + ", est_reel=" + est_reel + ", doit_lire=" + doit_lire + ", temps_restant="
+			+ temps_restant + ", en_execution=" + en_execution + "]";
+}
+  
+  
 }
