@@ -1,6 +1,7 @@
 package Vue;
 
-import java.awt.GridLayout;
+import Controller.Controller;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,8 +19,11 @@ public class FormFrame extends JFrame {
 	private JMenu menu;
 	private JMenuItem menuItem;
 	private TransactionFrame transFrame;
+	private Controller c;
 	
-	public FormFrame(){
+	public FormFrame(Controller c){
+		this.c = c;
+		
 		this.setTitle("Real Time DataBase");
 		
 		menuBar = new JMenuBar();
@@ -37,7 +41,7 @@ public class FormFrame extends JFrame {
 		this.menuBar.add(menu);
 		this.setJMenuBar(menuBar);
 		
-		this.updateForm = new FormPanel(transFrame);
+		this.updateForm = new FormPanel(transFrame, c);
 				
 		this.add(updateForm);
 		

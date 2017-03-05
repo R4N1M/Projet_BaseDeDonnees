@@ -13,6 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
+
+import Controller.Controller;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -64,9 +67,11 @@ public class FormPanel extends JPanel implements ActionListener{
 	private JButton submit;
 	
 	private Component newFrame;
+	private Controller c;
 	
-	public FormPanel(Component newFrame) {
+	public FormPanel(Component newFrame, Controller c) {
 		
+		this.c = c;
 		this.newFrame = newFrame;
 		
 		this.setLayout(new BorderLayout());
@@ -109,7 +114,7 @@ public class FormPanel extends JPanel implements ActionListener{
 		simulationTimeField = new JSpinner(new SpinnerNumberModel(0,0,10000,1));
 		
 		lambdaLabel = new JLabel("Lambda de la loi de poisson :");
-		lambdaField = new JSpinner(new SpinnerNumberModel(0,0,10000,1));
+		lambdaField = new JSpinner(new SpinnerNumberModel(0,0,10000,0.01));
 		
 		cancel = new JButton("Effacer");
 		cancel.addActionListener(this);
@@ -155,12 +160,16 @@ public class FormPanel extends JPanel implements ActionListener{
 			
 			System.out.println("START !!!!!!");
 			
-			ArrayList<Integer> ints = new ArrayList<Integer>();
+			/*ArrayList<Integer> ints = new ArrayList<Integer>();
 			for ( Component c : pd.getComponents()){
 				ints.add((int)((JSpinner)c).getValue());
 			}
-		
-			System.out.println(ints);
+			System.out.println(ints);*/
+			
+			c.createDataBase(	(int)realDataNumberField.getValue(), (int)startIntervalValidityField.getValue(), (int)endIntervalValidityField.getValue(), 
+								(int)classicDataNumberField.getValue(), (int)startIntervalNbOpField.getValue(), (int)endIntervalNbOpField.getValue(), 
+								(int)simulationTimeField.getValue(), (int)lambdaField.getValue(), (int)classicDataReadTimeField.getValue(), 
+								(int)classicDataWriteTimeField.getValue(), (int)realDataReadTimeField.getValue(), 3);
 			
 			newFrame = new TransactionFrame();
 			
