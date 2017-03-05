@@ -197,6 +197,18 @@ public class BaseDeDonnees {
     }
   }
 
+  public int getEchec() {
+    return echec;
+  }
+
+  public int getReussi() {
+    return reussi;
+  }
+
+  public String toString() {
+    return "nombre de transaction reussis : "+getReussi() +", nombre de transaction raté : "+getEchec();
+  }
+
   public static void main(String[] args) {
 
     // TODO: Interface graphique + Formulaire
