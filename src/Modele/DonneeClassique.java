@@ -1,3 +1,4 @@
+package Modele;
 public class DonneeClassique{
 
   private static int next_id = 0 ;

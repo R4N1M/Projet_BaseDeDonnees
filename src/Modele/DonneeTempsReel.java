@@ -1,3 +1,4 @@
+package Modele;
 public class DonneeTempsReel extends DonneeClassique {
   private int estampille ;
   private int duree_de_validation ;
