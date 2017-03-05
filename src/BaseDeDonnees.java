@@ -14,24 +14,28 @@ public class BaseDeDonnees {
 
   private int tempsActuel;
 
+  private int reussi;
+
+  private int echec;
+
 	public BaseDeDonnees(int nbr_dtr, int min_v, int max_v, int nbr_dc, int min_nbr_op, int max_nbr_op, int duree_s, int lp, int tlc, int tec, int tlr, int ter, double tauxAleatoire) {
     tempsLectureClassique = tlc;
     tempsEcritureClassique = tec;
     tempsLectureReel = tlr;
     tempsEcritureReel = ter;
 
+    transactions = new ArrayList<Transaction>();
+
     generate_tempsreel(nbr_dtr, min_v, max_v);
     generate_tempsclassique(nbr_dc);
     generate_transactions_miseajour();
     generate_transactions_utilisateur(min_nbr_op, max_nbr_op, duree_s, lp, tauxAleatoire);
 
-    // FIXME : peut être que le tri est à l'envers
-    // Trier les transactions dans leur ordre d'arrivé
-    transactions.sort( (Transaction t1, Transaction t2) -> {
-      return t1.getArrivee() - t2.getArrivee();
-    });
+    trie();
 
     tempsActuel = 0;
+    reussi = 0;
+    echec = 0;
 	}
 
   private void generate_tempsreel(int nbr, int min, int max){
@@ -126,6 +130,14 @@ public class BaseDeDonnees {
 
   }
 
+  public void trie() {
+    // FIXME : peut être que le tri est à l'envers
+    // Trier les transactions dans leur ordre d'arrivé
+    transactions.sort( (Transaction t1, Transaction t2) -> {
+      return t1.getArrivee() - t2.getArrivee();
+    });
+  }
+
   public void avancerTemps() {
     Transaction transaction = null;
     if (transactions.size() != 0) {
@@ -133,7 +145,27 @@ public class BaseDeDonnees {
     }
     if (transaction != null) {
       if (transaction.getArrivee() >= tempsActuel) {
-        transaction.avancerTemps(tempsActuel);
+        // TODO détecter si l'opération est fini et si la transaction était une transaction de mise à jour
+        boolean[] resu = transaction.avancerTemps(tempsActuel);
+        // si la transaction est terminé
+        if(resu[0]) {
+          // TODO : retiré la transaction de la liste
+
+          // si la transaction c'est terminé avec succés
+          if(resu[1]){
+            reussi++;
+          }
+          else {
+            echec++;
+          }
+
+          // si la transaction était de mis a jour
+          if (resu[2]){
+            // TODO: créer une nouvelle transaction de mis a jour et l'ajouter
+
+            trie();
+          }
+        }
       }
       else {
         tempsActuel++;

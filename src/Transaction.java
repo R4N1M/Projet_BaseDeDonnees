@@ -21,17 +21,36 @@ public class Transaction{
     return temps_echeance;
   }
 
-  public void avancerTemps(int tempsSimulation) {
+  public boolean[] avancerTemps(int tempsSimulation) {
+    boolean termine = false;
+    boolean deMisAJour = false;
+    boolean success = false;
+
+    // TODO: Detecter si la c'est une transaction de mise à jour
+    /*if ("de mise a jour") {
+      deMisAJour = true;
+    }*/
+
     if (tempsSimulation < temps_echeance) {
       if ( operations.get(operationCourante).avancerTemps(tempsSimulation) ) {
         operationCourante++;
-        // TODO: SI la transaction est finie ALORS supprimer la transaction de la liste des transaction
-        // TODO: SI c'est une transaction de mise à jour, en redeclarer une autre
+        if (operations.size() == operationCourante) {
+          // La transaction est terminée
+          termine = true;
+          success = true;
+        }
       }
     }
     else {
       annulerTout();
     }
+
+    boolean[] tab = new boolean[3];
+    tab[0] = termine;
+    tab[1] = success;
+    tab[2] = deMisAJour;
+
+    return tab;
   }
 
   //TODO: fonction qui annule une transaction et ses opérations filles.
