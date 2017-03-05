@@ -19,7 +19,7 @@ public class BaseDeDonnees {
 
   private int echec;
 
-	public BaseDeDonnees(int nbr_dtr, int min_v, int max_v, int nbr_dc, int min_nbr_op, int max_nbr_op, int duree_s, int lp, int tlc, int tec, int tlr, int ter, double tauxAleatoire) {
+	public BaseDeDonnees(int nbr_dtr, int min_v, int max_v, int nbr_dc, int min_nbr_op, int max_nbr_op, int duree_s, double lp, int tlc, int tec, int tlr, int ter, double tauxAleatoire) {
     tempsLectureClassique = tlc;
     tempsEcritureClassique = tec;
     tempsLectureReel = tlr;
@@ -66,7 +66,7 @@ public class BaseDeDonnees {
     }
   }
 
-  private void generate_transactions_utilisateur(int min, int max, int duree, int lambda, double tauxAleatoire){
+  private void generate_transactions_utilisateur(int min, int max, int duree, double lambda, double tauxAleatoire){
     Random rnd = new Random();
     Poisson poisson = new Poisson(lambda, duree);
     ArrayList<Integer> evenement = poisson.generate();
@@ -210,32 +210,11 @@ public class BaseDeDonnees {
     return "nombre de transaction reussis : "+getReussi() +", nombre de transaction raté : "+getEchec();
   }
 
-  public static void main(String[] args) {
-
-    // TODO: Interface graphique + Formulaire
-    int min_nombre_operation = 1;
-    int max_nombre_operation = 3;
-    int duree_lecture_temps_reel = 1;
-
-    int duree_lecture_classique =  2;
-    int duree_ecriture_classique = 2;
-    int duree_simulation =100 ;
-    double lambda_poisson = 0.5;
-
-    int nombre_donnee_temps_reel = 10;
-    int nombre_donnee_classique = 10;
-    int min_validite = 10;
-    int max_validite = 20;
-
-    // définit la borne max pour la valeur aléatoire
-    double tauxAleatoire = 2.0;
+  public int getTempsActuel() {
+  	return tempsActuel;
   }
 
-public int getTempsActuel() {
-	return tempsActuel;
-}
-
-public void setTempsActuel(int tempsActuel) {
-	this.tempsActuel = tempsActuel;
-}
+  public void setTempsActuel(int tempsActuel) {
+  	this.tempsActuel = tempsActuel;
+  }
 }
