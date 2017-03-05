@@ -2,6 +2,7 @@ package Controller;
 
 import Vue.FormFrame;
 import Vue.TransactionFrame;
+import sun.security.action.GetBooleanSecurityPropertyAction;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,14 @@ public class Controller {
 		this.bdd = bdd;
 	}
 
+	public int getSucces(){
+		return bdd.getReussi();
+	}
+	
+	public int getEchec(){
+		return bdd.getEchec();
+	}
+	
 	public void createDataBase(	int nbr_dtr, int min_v, int max_v, int nbr_dc, int min_nbr_op, 
 								int max_nbr_op, int duree_s, int lp, int tlc, int tec, int tlr, 
 								int ter
@@ -50,7 +59,6 @@ public class Controller {
 	}
 	
 	public int getCurrentTime(){
-		System.out.println(bdd.getReussi() + " " + bdd.getEchec());
 		return bdd.getTempsActuel();
 	}
 	

@@ -15,7 +15,8 @@ import Controller.Controller;
 
 public class TransactionFrame extends JFrame {
 
-	private final int W_WIDTH = 400;
+	private static final long serialVersionUID = 1L;
+	private final int W_WIDTH = 800;
 	private final int W_HEIGHT = 800;
 	private JLabel title;
 	private JLabel content;
@@ -64,13 +65,21 @@ public class TransactionFrame extends JFrame {
 	public void maj(){
 		
 		ArrayList<String> transactions = c.getTransactions();
-		String str = "<html>";
-		for (String s : transactions){
-			System.out.println(s);
-			str += s + "<br>";
+		String str = "";
+		if(transactions.size() == 0){
+			next.setEnabled(false);
+			str = "<html><p style='color:green'>Transactions reussies : "+c.getSucces()+"</p>";
+			str += "<p style='color:red'>Transactions echouées : "+c.getEchec()+"</p>";
+		} else {
+			str = "<html>";
+			for (String s : transactions){
+				System.out.println(s);
+				str += s + "<br>";
+			}
+			str += "</html>";
 		}
-		str += "</html>";
-		content.setText(str);
 		time.setText(c.getCurrentTime()+"");
+		
+		content.setText(str);
 	}
 }
